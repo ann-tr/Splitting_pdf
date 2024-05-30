@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SplitPDF</title>
+  {% load static %}
+  <link rel="stylesheet" href="{% static 'styles.css'%}">
+</head>
+<body>
+    <h1 
+    class = heading>PDF SPLIT</h1>
+    <header class =header>
+      <nav class = "mainheader">
+          
+            <a href ="index.html"> Home</a>
+            <a href = "feedback.html"> Feedbacks </a>
+            <a href = "#"> Contact Us </a>
+              
+          
+      
+      </nav>
+
+  </header>
+  <div class="container">
+    <h3> Upload PDF</h3>
+    <div class="upload-container">
+      <label for="image-upload" class="upload-icon">
+        <img src="gallery.png" alt= "Upload Icon">
+      </label>
+      <form action = "{% url 'uploads' %}" method = "post" enctype="multipart/form-data">
+      {% csrf_token %}
+
+
+      <input type="file" id="pdf-upload"  name ="pdf-upload"accept="pdf">
+      <button type ="submit">UPLOAD</button>
+    </form>
+      <div class="progress-bar">
+        <div class="progress"></div>
+      </div>
+      <p class="status">Splitting in progress...</p>
+    </div>
+    <div>
+      <a href ="uploads.html"> Dowload uploaded File</a>
+    </div>
+    <h2>Output</h2>
+    
+
+</body>
+</html>
