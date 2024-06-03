@@ -1,11 +1,16 @@
 from django.urls import path
 from . import views
+from django.conf import settings
+from django.conf.urls.static import static
 
 urlpatterns = [
-    path('hello/', views.say),
-    path('uploads/',views.uploads),
+    path('hello/', views.say, name = 'hello'),
+    path('uploads/',views.uploads , name = 'uploads'),
 
 
   
 ]
 
+
+if settings.DEBUG:
+    urlpatterns += static(settings.OUTPUTS_URL, document_root=settings.OUTPUTS_ROOT)

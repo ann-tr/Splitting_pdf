@@ -16,9 +16,6 @@
             <a href ="index.html"> Home</a>
             <a href = "feedback.html"> Feedbacks </a>
             <a href = "#"> Contact Us </a>
-              
-          
-      
       </nav>
 
   </header>
@@ -26,9 +23,9 @@
     <h3> Upload PDF</h3>
     <div class="upload-container">
       <label for="image-upload" class="upload-icon">
-        <img src="gallery.png" alt= "Upload Icon">
+        <img src="{% static 'gallery.png' %}" alt= "Upload Icon">
       </label>
-      <form action = "{% url 'uploads' %}" method = "post" enctype="multipart/form-data">
+      <form action = "{% url 'uploads'%}" method = "post" enctype="multipart/form-data">
       {% csrf_token %}
 
 
