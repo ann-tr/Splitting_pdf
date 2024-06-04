@@ -7,47 +7,6 @@ from django.conf import settings
 def say(request):
     return render(request,'template/hello.html')
 
-'''from django.http import HttpResponse
-
-def uploads(request):
-    if request.method == 'POST' and request.FILES.get('pdf-upload'):
-        pdf_file = request.FILES['pdf-upload']
-        fs = FileSystemStorage()
-        filename = fs.save(pdf_file.name, pdf_file)
-        uploaded_file_path = fs.path(filename)
-        
-        print(f"Uploaded file path: {uploaded_file_path}")  # Debugging line to print the uploaded file path
-
-        # Call the split_pdfs function
-        output_files = split_pdfs(uploaded_file_path)
-        
-        # Generate URLs for the split files
-        for file in output_files:
-            split_file_urls = request.build_absolute_uri(settings.MEDIA_URL + os.path.basename(file)) 
-            print(f"Split file URL: {split_file_urls}")
-
-        return HttpResponse("Check console for file paths.")  # Temporary response for debugging
-    return HttpResponse("No files uploaded.")
-
-def split_pdfs(input_file_path):
-    inputpdf = PdfReader(open(input_file_path, "rb"))
-    output_path = settings.MEDIA_ROOT
-    base_filename = os.path.basename(input_file_path)
-    name, ext = os.path.splitext(base_filename)
-    output_files = []
-    for i, page in enumerate(inputpdf.pages):
-        output = PdfWriter()
-        output.add_page(page)
-
-        out_file_path = os.path.join(output_path, f"{name}_page_{i+1}.pdf")
-        with open(out_file_path, "wb") as output_stream:
-            output.write(output_stream)
-
-        output_files.append(out_file_path)
-
-    return output_files'''
-
-
 def uploads(request):
     if request.method == 'POST' and request.FILES['pdf-upload']:
         pdf_file = request.FILES['pdf-upload']
@@ -60,7 +19,7 @@ def uploads(request):
         output_files = split_pdfs(uploaded_file_path)
         
         # Generate URLs for the split files
-        #split_file_urls =   [str(settings.OUTPUTS_URL) + (os.path.basename(file)) for file in output_files]
+    
         split_file_urls =   [request.build_absolute_uri(settings.MEDIA_URL + os.path.basename(file)) for file in output_files]
         return render(request, 'template/uploads.html', {'split_file_urls': split_file_urls})
     return render(request, 'template/uploads.html')
