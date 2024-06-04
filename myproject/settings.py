@@ -14,11 +14,11 @@ from pathlib import Path
 import os
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
-OUTPUTS_URL = "project1/outputs/"
-OUTPUTS_ROOT = BASE_DIR / "project1/outputs/"
+MEDIA_URL = "project1/outputs/"
+MEDIA_ROOT = BASE_DIR / "project1/outputs/"
 
 print(BASE_DIR)
-print(OUTPUTS_ROOT)
+print(MEDIA_ROOT)
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/5.0/howto/deployment/checklist/

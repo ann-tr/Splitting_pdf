@@ -6,6 +6,7 @@ from django.conf.urls.static import static
 urlpatterns = [
     path('hello/', views.say, name = 'hello'),
     path('uploads/',views.uploads , name = 'uploads'),
+  
 
 
   
@@ -13,4 +14,4 @@ urlpatterns = [
 
 
 if settings.DEBUG:
-    urlpatterns += static(settings.OUTPUTS_URL, document_root=settings.OUTPUTS_ROOT)
+    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
