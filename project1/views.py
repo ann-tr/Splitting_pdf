@@ -32,6 +32,8 @@ def uploads(request):
 def split_pdfs(input_file_path):
     inputpdf = PdfReader(open(input_file_path, "rb"))
     output_path = settings.MEDIA_ROOT
+    
+    #extracting base file name
     base_filename = os.path.basename(input_file_path)
     name, ext = os.path.splitext(base_filename)
 
