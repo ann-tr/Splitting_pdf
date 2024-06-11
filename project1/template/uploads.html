@@ -13,6 +13,13 @@
                 <li><a href="{{ file_url }}" download>{{ file_url}}</a></li>
             {% endfor %}
         </ul>
+        <ul>
+            {% for file_url in split_file_urls %}
+                <li><a href="{{ file_url }}" ></li>
+                    {% endfor %}
+            <button style="background-color:darkgrey;"  download>DOWNLOAD ALL</button></a>
+           
+        </ul>
     {% else %}
         <p>No files uploaded.</p>
     {% endif %}
