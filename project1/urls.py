@@ -4,14 +4,9 @@ from django.conf import settings
 from django.conf.urls.static import static
 
 urlpatterns = [
-    path('hello/', views.say, name = 'hello'),
+    
+    path('', views.say, name = 'hello'),
     path('uploads/',views.uploads , name = 'uploads'),
-  
-
-
-  
 ]
-
-
 if settings.DEBUG:
     urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
