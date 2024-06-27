@@ -43,6 +43,7 @@ INSTALLED_APPS = [
     "django.contrib.staticfiles",
     "django.contrib.sites",
     "project1",
+    "rest_framework",
 ]
 SITE_ID = 1
 MIDDLEWARE = [
