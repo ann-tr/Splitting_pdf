@@ -4,4 +4,9 @@ from .models import AccessLog , Pdfinfo
 
 
 admin.site.register(AccessLog)
+
+
+class PdfinfoAdmin(admin.ModelAdmin):
+    list_display = ('id', 'input_file_path', 'output_folder_path', 'date_time')  # Add 'id' here
+
 admin.site.register(Pdfinfo)

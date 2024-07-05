@@ -14,8 +14,8 @@ from pathlib import Path
 import os
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
-MEDIA_URL = "project1/outputs/"
-MEDIA_ROOT = BASE_DIR / "project1/outputs/"
+MEDIA_URL = "project1/"
+MEDIA_ROOT = BASE_DIR / "project1/"
 
 print(BASE_DIR)
 print(MEDIA_ROOT)
@@ -129,3 +129,10 @@ STATIC_URL = "static/"
 # https://docs.djangoproject.com/en/5.0/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
+CSRF_TRUSTED_ORIGINS = ['http://127.0.0.1:8000/upload_from_url/']
+
+REST_FRAMEWORK = {
+    'DEFAULT_PARSER_CLASSES': (
+        'rest_framework.parsers.JSONParser',
+    )
+}
