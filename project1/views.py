@@ -84,21 +84,27 @@ class MyModelView(APIView):
     serializer_class = MessageSerializer
     
     @csrf_exempt
-    def post(self,request ):
+    def post(self,request):
         '''if request.method == 'POST':
             
             request.user = Pdfinfo.objects.first()'''
             
         try:
-            file = request.FILES['input_file_path']
+            request.user = Pdfinfo.objects.first()
+            print("YES INSiDE TRY ----------")
+            serializer = self.serializer_class(request.user,data = request.FILES)
+            file_input = request.FILES['upload_file_path']
+            print(file_input)
             folder_path =  os.path.join(str(settings.MEDIA_ROOT) , "input_pdfs")
             fs = FileSystemStorage(location = folder_path)
-            filename = fs.save(file.name, file)
+            filename = fs.save(file_input.name, file_input)
             uploaded_file_path = fs.path(filename)
-            print("FILE PATH IS GIEVN HERE ---------->",file)
+            print(uploaded_file_path)
+            print("FILE PATH IS GIEVN HERE ---------->",file_input)
             split_pdf_function = split_pdfs( uploaded_file_path)
             ''' pdf_info = Pdfinfo.objects.create( input_file_path = uploaded_file_path,  # Include uploaded file path
                         output_folder_path = split_pdf_function )'''
+            print(split_pdf_function)
                         
             serializer = self.serializer_class(data={
                         'input_file_path': uploaded_file_path,  # Include uploaded file path
@@ -119,7 +125,7 @@ class MyModelView(APIView):
         #return Response(serializer.errors, status= status.HTTP_400_BAD_REQUEST)
            
            
-           
+           # USE THISSSSS ------->   serializer.validated_data['file']
            
         ''' serializer_instance = serializer.save()
             file_path = serializer_instance.input_file_path.path

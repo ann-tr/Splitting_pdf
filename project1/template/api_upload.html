@@ -10,14 +10,14 @@
         {% csrf_token %}
   
   
-        <input type = "file" id  = "upload_file_path"  name = "upload_file_path" accept = "pdf">
+        <input type = "file" id  = "upload_file_path"  name = "upload_file_path" accept = "application/pdf">
         <button type ="submit">UPLOAD</button>
       </form>
       <script>
         window.addEventListener("load" , (event) =>{
             const form = document.querySelector('form');
             const submitUrl  = form.getAttribute('action');
-            let fileINput = document.querySelector('input'[type= 'upload_file_path']);
+            let fileInput = document.querySelector('input[type = "file"]');
             let csrf = document.querySelector('input[name = "csrfmiddlewaretoken"]');
             form.addEventListener('submit',(e) =>{
                 e.preventDefault();
@@ -25,13 +25,16 @@
                 const headers = {
                     'X-CSRFToken': csrf.value,
                 }
-                formData.append('upload_file_path', fileINput.files[0]);
+                formData.append('file', fileInput.files[0]);
                 fetch(submitUrl,{
                     method:'POST',
                     body: formData,
                     headers:headers
 
-                }).then(data => console.log(data) )
+                }).then (response => response.json())
+                .then(data => console.log(data) )
+                
+                  .catch(error => console.error('Error:', error));
 
 
                 })
